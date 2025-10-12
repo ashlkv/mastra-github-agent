@@ -1,5 +1,5 @@
 import { Agent } from '@mastra/core/agent';
-import { google } from '@ai-sdk/google';
+import { openai } from '@ai-sdk/openai';
 import { githubTool } from '../tools/github-tool';
 
 export const githubAgent = new Agent({
@@ -27,7 +27,7 @@ export const githubAgent = new Agent({
 
 You have access to public GitHub repositories and can perform read operations without authentication. For write operations like creating issues, you may need proper permissions.`,
 
-    model: google('gemini-2.0-flash-lite'),
+    model: openai('gpt-4o-mini'),
 
     tools: {
         githubTool,

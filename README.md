@@ -11,7 +11,7 @@ npx create-mastra@latest --template https://github.com/ashlkv/mastra-github-agen
 ```bash
 cd mastra-github-agent
 cp .env.example .env
-# Add your GOOGLE_GENERATIVE_AI_API_KEY and GITHUB_TOKEN to .env file
+# Add your OPENAI_API_KEY and GITHUB_TOKEN to .env file
 ```
 
 3. Start the app in development mode
