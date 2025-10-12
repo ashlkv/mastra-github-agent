@@ -1,14 +1,25 @@
 import { Agent } from '@mastra/core/agent';
 import { createOpenAI, openai as defaultOpenAi } from '@ai-sdk/openai';
+import { PinoLogger } from '@mastra/loggers';
 import { githubTool } from '../tools/github-tool';
 
+const logger = new PinoLogger({
+    name: 'GitHubAgent',
+    level: 'debug',
+});
+
+let openai;
 // Configures OpenAI provider with optional proxy
-const openai = process.env.OPENAI_PROXY_URL
-    ? createOpenAI({
-          baseURL: process.env.OPENAI_PROXY_URL,
-          apiKey: process.env.OPENAI_API_KEY,
-      })
-    : defaultOpenAi;
+if (process.env.OPENAI_PROXY_URL) {
+    logger.info(`Using Archestra proxy: ${process.env.OPENAI_PROXY_URL}`);
+    openai = createOpenAI({
+        baseURL: process.env.OPENAI_PROXY_URL,
+        apiKey: process.env.OPENAI_API_KEY,
+    });
+} else {
+    logger.info('Using direct OpenAI connection');
+    openai = defaultOpenAi;
+}
 
 export const githubAgent = new Agent({
     name: 'Github Agent',

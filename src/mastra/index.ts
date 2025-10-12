@@ -11,7 +11,7 @@ export const mastra = new Mastra({
     }),
     logger: new PinoLogger({
         name: 'Mastra',
-        level: 'info',
+        level: 'debug',
     }),
     telemetry: {
         // Telemetry is deprecated and will be removed in the Nov 4th release
