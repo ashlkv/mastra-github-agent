@@ -1,6 +1,14 @@
 import { Agent } from '@mastra/core/agent';
-import { openai } from '@ai-sdk/openai';
+import { createOpenAI, openai as defaultOpenAi } from '@ai-sdk/openai';
 import { githubTool } from '../tools/github-tool';
+
+// Configures OpenAI provider with optional proxy
+const openai = process.env.OPENAI_PROXY_URL
+    ? createOpenAI({
+          baseURL: process.env.OPENAI_PROXY_URL,
+          apiKey: process.env.OPENAI_API_KEY,
+      })
+    : defaultOpenAi;
 
 export const githubAgent = new Agent({
     name: 'Github Agent',
