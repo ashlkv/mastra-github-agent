@@ -46,7 +46,7 @@ export const githubAgent = new Agent({
 
 You have access to public GitHub repositories and can perform read operations without authentication. For write operations like creating issues, you may need proper permissions.`,
 
-    model: openai('gpt-4o-mini'),
+    model: openai.chat('gpt-4o-mini'),
 
     tools: {
         githubTool,
