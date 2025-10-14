@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { githubTool } from './github-tool.js';
+import { RuntimeContext } from '@mastra/core/runtime-context';
 
 // Mock fetch globally
 const mockFetch = vi.fn();
@@ -44,7 +45,8 @@ describe('githubTool', () => {
           owner: 'testowner',
           repo: 'testrepo',
           issue_number: 1
-        }
+        },
+        runtimeContext: new RuntimeContext()
       });
 
       expect(result.success).toBe(true);
@@ -89,7 +91,8 @@ describe('githubTool', () => {
           owner: 'testowner',
           repo: 'testrepo',
           issue_number: 1
-        }
+        },
+        runtimeContext: new RuntimeContext()
       });
 
       expect(mockFetch).toHaveBeenCalledWith(
@@ -110,7 +113,8 @@ describe('githubTool', () => {
           action: 'get_issue',
           owner: 'testowner',
           repo: 'testrepo'
-        }
+        },
+        runtimeContext: new RuntimeContext()
       });
 
       expect(result.success).toBe(false);
@@ -130,7 +134,8 @@ describe('githubTool', () => {
           owner: 'testowner',
           repo: 'testrepo',
           issue_number: 999
-        }
+        },
+        runtimeContext: new RuntimeContext()
       });
 
       expect(result.success).toBe(false);
@@ -158,7 +163,8 @@ describe('githubTool', () => {
           repo: 'testrepo',
           title: 'New Issue',
           body: 'This is a new issue'
-        }
+        },
+        runtimeContext: new RuntimeContext()
       });
 
       expect(result.success).toBe(true);
@@ -190,7 +196,8 @@ describe('githubTool', () => {
           owner: 'testowner',
           repo: 'testrepo',
           title: 'Title only'
-        }
+        },
+        runtimeContext: new RuntimeContext()
       });
 
       expect(result.success).toBe(false);
@@ -219,7 +226,8 @@ describe('githubTool', () => {
           owner: 'testowner',
           repo: 'testrepo',
           file_path: 'README.md'
-        }
+        },
+        runtimeContext: new RuntimeContext()
       });
 
       expect(result.success).toBe(true);
@@ -247,7 +255,8 @@ describe('githubTool', () => {
           owner: 'testowner',
           repo: 'testrepo',
           file_path: 'docs'
-        }
+        },
+        runtimeContext: new RuntimeContext()
       });
 
       expect(result.success).toBe(false);
@@ -260,7 +269,8 @@ describe('githubTool', () => {
           action: 'get_file_content',
           owner: 'testowner',
           repo: 'testrepo'
-        }
+        },
+        runtimeContext: new RuntimeContext()
       });
 
       expect(result.success).toBe(false);
@@ -280,7 +290,8 @@ describe('githubTool', () => {
           owner: 'testowner',
           repo: 'testrepo',
           file_path: 'nonexistent.md'
-        }
+        },
+        runtimeContext: new RuntimeContext()
       });
 
       expect(result.success).toBe(false);
@@ -325,7 +336,8 @@ describe('githubTool', () => {
           owner: 'testowner',
           repo: 'testrepo',
           file_path: ''
-        }
+        },
+        runtimeContext: new RuntimeContext()
       });
 
       expect(result.success).toBe(true);
@@ -365,7 +377,8 @@ describe('githubTool', () => {
           owner: 'testowner',
           repo: 'testrepo',
           file_path: 'src'
-        }
+        },
+        runtimeContext: new RuntimeContext()
       });
 
       expect(result.success).toBe(true);
@@ -391,7 +404,8 @@ describe('githubTool', () => {
           owner: 'testowner',
           repo: 'testrepo',
           file_path: 'README.md'
-        }
+        },
+        runtimeContext: new RuntimeContext()
       });
 
       expect(result.success).toBe(false);
@@ -411,7 +425,8 @@ describe('githubTool', () => {
           owner: 'testowner',
           repo: 'testrepo',
           file_path: 'nonexistent'
-        }
+        },
+        runtimeContext: new RuntimeContext()
       });
 
       expect(result.success).toBe(false);
@@ -426,10 +441,11 @@ describe('githubTool', () => {
           action: 'unknown_action' as any,
           owner: 'testowner',
           repo: 'testrepo'
-        }
+        },
+        runtimeContext: new RuntimeContext()
       });
 
-      expect(result.error).toBe(true);
+      expect(result.success).toBe(false);
       expect(result.message).toContain('Tool validation failed');
       expect(result.message).toContain('Invalid enum value');
     });
@@ -445,7 +461,8 @@ describe('githubTool', () => {
           owner: 'testowner',
           repo: 'testrepo',
           issue_number: 1
-        }
+        },
+        runtimeContext: new RuntimeContext()
       });
 
       expect(result.success).toBe(false);
