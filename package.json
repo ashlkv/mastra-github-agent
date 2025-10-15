@@ -1,7 +1,7 @@
 {
   "name": "mastra-github-agent",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.0",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "dev": "mastra dev",
@@ -9,8 +9,6 @@
     "start": "mastra start",
     "typecheck": "tsc --noEmit"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "type": "module",
   "engines": {
@@ -18,7 +16,7 @@
   },
   "dependencies": {
     "@ai-sdk/openai": "^2.0.50",
-    "@mastra/core": "^0.20.2",
+    "@mastra/core": "^0.21.0",
     "@mastra/libsql": "^0.15.1",
     "@mastra/loggers": "^0.10.15",
     "@mastra/memory": "^0.15.6",
@@ -26,9 +24,7 @@
   },
   "devDependencies": {
     "@types/node": "^24.7.2",
-    "mastra": "^0.15.1",
-    "typescript": "^5.9.3",
-    "vitest": "^3.2.4"
+    "mastra": "^0.16.0",
+    "typescript": "^5.9.3"
   }
 }
-
